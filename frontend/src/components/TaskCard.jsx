@@ -28,7 +28,6 @@ export default function TaskCard({
             style={style}
             className="task-card"
         >
-            {/* Drag handle */}
             {!isOverlay && (
                 <div
                     {...attributes}
@@ -46,13 +45,6 @@ export default function TaskCard({
                 Assigned To: {task.assignedTo?.username || "Unassigned"}
             </p>
             {!isOverlay && (
-                // <button
-                //     onClick={() => handleSmartAssign(task._id)}
-                //     className="task-assign-btn"
-                // >
-                //     Smart Assign
-                // </button>
-
                 <div className="task-buttons">
                     <button
                         onClick={() => handleSmartAssign(task._id)}

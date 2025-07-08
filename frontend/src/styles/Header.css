@@ -24,7 +24,7 @@
 
 .user-icon {
     font-size: 1.8rem;
-    color: #7c3aed; /* purple-600 */
+    color: #7c3aed;
 }
 
 .logout-dropdown {
@@ -50,7 +50,7 @@
 }
 
 .logout-button:hover {
-    background-color: #f3f4f6; /* hover effect */
+    background-color: #f3f4f6;
 }
 
 .login-link {
@@ -58,7 +58,7 @@
     align-items: center;
     gap: 0.5rem;
     font-size: 1.2rem;
-    color: #2563eb; /* blue-600 */
+    color: #2563eb;
     text-decoration: none;
 }
 

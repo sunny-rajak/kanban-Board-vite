@@ -8,7 +8,7 @@
 }
 
 .create-task-form h3 {
-    font-size: 1.125rem; /* text-lg */
+    font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
 }
@@ -36,11 +36,11 @@
 }
 
 .create-task-form button:hover {
-    background-color: #2563eb; /* blue-600 */
+    background-color: #2563eb;
 }
 
 .create-task-form .error-text {
-    color: #dc2626; /* red-600 */
+    color: #dc2626;
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
 }

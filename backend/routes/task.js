@@ -9,7 +9,6 @@ router.post("/", authMiddleware, async (req, res) => {
     try {
         const { title, description, priority } = req.body;
 
-        // Validate title
         const existing = await Task.findOne({ title });
         if (existing) {
             return res
@@ -29,14 +28,12 @@ router.post("/", authMiddleware, async (req, res) => {
         });
         await task.save();
 
-        // Log action
         await ActionLog.create({
             action: `created task "${title}"`,
             user: req.user.id,
             task: task._id,
         });
 
-        // Emit real-time update
         const io = req.app.get("socketio");
         io.emit("taskCreated", task);
 
@@ -76,7 +73,6 @@ router.put("/:id", authMiddleware, async (req, res) => {
         const task = await Task.findById(req.params.id);
         if (!task) return res.status(404).json({ message: "Task not found" });
 
-        // Check for conflict
         if (clientUpdatedAt && new Date(clientUpdatedAt) < task.updatedAt) {
             return res.status(409).json({
                 message: "Conflict detected",
@@ -98,7 +94,6 @@ router.put("/:id", authMiddleware, async (req, res) => {
             }
         }
 
-        // Update fields
         if (title) task.title = title;
         if (description) task.description = description;
         if (status) task.status = status;
@@ -152,7 +147,6 @@ router.delete("/:id", authMiddleware, async (req, res) => {
 // Smart Assign
 router.post("/:id/smart-assign", authMiddleware, async (req, res) => {
     try {
-        // 1. Find all users
         const users = await Task.aggregate([
             {
                 $match: { status: { $ne: "Done" } },
@@ -165,13 +159,11 @@ router.post("/:id/smart-assign", authMiddleware, async (req, res) => {
             },
         ]);
 
-        // Build a map: userId -> active task count
         const counts = {};
         users.forEach((u) => {
             if (u._id) counts[u._id.toString()] = u.count;
         });
 
-        // Find all users in the system
         const User = require("../models/User");
         const allUsers = await User.find();
 
@@ -190,14 +182,12 @@ router.post("/:id/smart-assign", authMiddleware, async (req, res) => {
             return res.status(400).json({ message: "No users to assign" });
         }
 
-        // Update task assignment
         const task = await Task.findById(req.params.id);
         if (!task) return res.status(404).json({ message: "Task not found" });
 
         task.assignedTo = selectedUser._id;
         await task.save();
 
-        // Log action
         await ActionLog.create({
             action: `smart assigned task "${task.title}" to ${selectedUser.username}`,
             user: req.user.id,
@@ -205,7 +195,7 @@ router.post("/:id/smart-assign", authMiddleware, async (req, res) => {
         });
 
         const io = req.app.get("socketio");
-        io.emit("taskUpdated", task); // 🔥 real-time update to frontend
+        io.emit("taskUpdated", task);
 
         res.json({
             message: `Assigned to ${selectedUser.username}`,
@@ -241,7 +231,7 @@ router.patch("/:id", async (req, res) => {
             { new: true }
         ).populate("assignedTo", "username");
         const io = req.app.get("socketio");
-        io.emit("taskUpdated", updatedTask); // ✅ notify clients
+        io.emit("taskUpdated", updatedTask);
         res.json(updatedTask);
     } catch (err) {
         console.error("Error updating task:", err);

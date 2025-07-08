@@ -19,7 +19,6 @@ export default function CreateTask({ onCreate }) {
         try {
             await onCreate({ title, description, priority });
 
-            // Clear fields on success
             setTitle("");
             setDescription("");
             setPriority("Medium");

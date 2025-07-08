@@ -52,7 +52,6 @@ export default function Login() {
                     </div>
                 </div>
 
-                {/* Authentication image */}
                 <div className="auth-image-section">
                     <img
                         src={authenticationImage}
