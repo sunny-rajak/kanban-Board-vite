@@ -1,0 +1,39 @@
+/* kanban.css */
+
+/* Root container */
+.kanban-wrapper {
+    min-height: 100vh;
+    padding: 1.5rem;
+    background: #f3f4f6;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Loading text */
+.kanban-loading {
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Section padding */
+.kanban-section {
+    margin-bottom: 2rem;
+}
+
+.not-loggedin-message {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #6b7280; /* gray-500 */
+}
+.not-loggedin-message a {
+    color: #7c3aed; /* purple-600 */
+    text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+    .kanban-board-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

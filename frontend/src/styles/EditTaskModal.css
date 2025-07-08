@@ -1,0 +1,88 @@
+/* Backdrop for modal */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+/* Modal box */
+.modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.modal h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #4f46e5; /* Indigo-600 */
+}
+
+/* Inputs */
+.modal input,
+.modal textarea,
+.modal select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.modal input:focus,
+.modal textarea:focus,
+.modal select:focus {
+    border-color: #7c3aed; /* Purple-600 */
+    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
+}
+
+/* Error message */
+.modal .text-red-500 {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border: none;
+    margin-right: 0.5rem;
+}
+
+/* Save button */
+.btn-purple {
+    background-color: #7c3aed;
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+.btn-purple:hover {
+    background-color: #6d28d9;
+}
+
+/* Cancel/Delete button */
+.btn-delete {
+    background-color: #e5e7eb; /* gray-200 */
+    color: #1f2937;
+}
+
+.btn-delete:hover {
+    background-color: #d1d5db;
+}

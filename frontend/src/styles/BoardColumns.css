@@ -1,0 +1,13 @@
+.board-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Responsive layout: 3 columns on medium+ screens */
+@media (min-width: 768px) {
+    .board-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
